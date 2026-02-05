@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>治験適格性スクリーニング</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-inner">
+                <div class="logo-area">
+                    <div class="logo-icon">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                            <rect x="2" y="2" width="24" height="24" rx="6" stroke="currentColor" stroke-width="2"/>
+                            <path d="M9 14h10M14 9v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="app-title">治験適格性スクリーニング</h1>
+                        <p class="app-subtitle">Clinical Trial Eligibility Screening</p>
+                    </div>
+                </div>
+                <div class="header-badge">
+                    <span class="badge-dot"></span>
+                    参考ツール・医師判断が必要
+                </div>
+            </div>
+        </header>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-steps" id="progressSteps"></div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <form id="screeningForm">
+
+                <!-- Step 1: 基本情報 -->
+                <section class="step active" data-step="1">
+                    <div class="step-header">
+                        <span class="step-number">01</span>
+                        <div>
+                            <h2 class="step-title">基本適格要件</h2>
+                            <p class="step-desc">同意能力・年齢・疾患に関する基本要件</p>
+                        </div>
+                    </div>
+                    <div class="questions-grid">
+                        <div class="question-card">
+                            <div class="question-label">年齢</div>
+                            <p class="question-detail">同意説明文書への署名時に18歳以上であるか</p>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="age" value="yes" required><span class="radio-custom"></span>はい</label>
+                                <label class="radio-option"><input type="radio" name="age" value="no"><span class="radio-custom"></span>いいえ</label>
+                            </div>
+                        </div>
+                        <div class="question-card">
+                            <div class="question-label">同意能力</div>
+                            <p class="question-detail">ICF及び治験実施計画書に記載されている要件・制限の遵守を含め、同意説明文書に署名することができるか</p>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="consent" value="yes" required><span class="radio-custom"></span>はい</label>
+                                <label class="radio-option"><input type="radio" name="consent" value="no"><span class="radio-custom"></span>いいえ</label>
+                            </div>
+                        </div>
+                        <div class="question-card">
+                            <div class="question-label">進行固形がんの確認</div>
+                            <p class="question-detail">治験モジュールに固有の進行固形がんであることが病理学的に確認されており、適切な標準治療が無効/不耐/存在しないか（全身療法歴4ライン以下）</p>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="diagnosis" value="yes" required><span class="radio-custom"></span>はい</label>
+                                <label class="radio-option"><input type="radio" name="diagnosis" value="no"><span class="radio-custom"></span>いいえ</label>
+                            </div>
+                        </div>
+                        <div class="question-card">
+                            <div class="question-label">腫瘍組織検体</div>
+                            <p class="question-detail">IHC及びバイオマーカー解析のための保存又は新鮮腫瘍組織を提出可能か</p>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="tissue" value="yes" required><span class="radio-custom"></span>はい</label>
+                                <label class="radio-option"><input type="radio" name="tissue" value="no"><span class="radio-custom"></span>いいえ</label>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step 2: 疾患・PS -->
+                <section class="step" data-step="2">
+                    <div class="step-header">
+                        <span class="step-number">02</span>
+                        <div>
+                            <h2 class="step-title">疾患特性・全身状態</h2>
+                            <p class="step-desc">測定可能病変・PS・予後・血圧</p>
+                        </div>
+                    </div>
+                    <div class="questions-grid">
+                        <div class="question-card">
+                            <div class="question-label">RECIST 1.1 測定可能病変</div>
+                            <p class="question-detail">RECIST 1.1に基づく標的病変を少なくとも1つ有するか（長径≥10mm、リンパ節は短径≥15mm）</p>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="recist" value="yes" required><span class="radio-custom"></span>はい</label>
+                                <label class="radio-option"><input type="radio" name="recist" value="no"><span class="radio-custom"></span>いいえ</label>
+                            </div>
+                        </div>
+                        <div class="question-card">
+                            <div class="question-label">予後</div>
+                            <p class="question-detail">12週間以上の生存が見込まれるか</p>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="prognosis" value="yes" required><span class="radio-custom"></span>はい</label>
+                                <label class="radio-option"><input type="radio" name="prognosis" value="no"><span class="radio-custom"></span>いいえ</label>
+                            </div>
+                        </div>
+                        <div class="question-card">
+                            <div class="question-label">ECOG Performance Status</div>
+                            <p class="question-detail">ECOG PS 0-1であるか</p>
+                            <div class="select-wrapper">
+                                <select name="ecog" required>
+                                    <option value="">選択してください</option>
+                                    <option value="0">PS 0 - 無症状</option>
+                                    <option value="1">PS 1 - 軽度の症状</option>
+                                    <option value="2">PS 2 - 日中の50%以上は起居</option>
+                                    <option value="3">PS 3 - 日中の50%以上が臥床</option>
+                                    <option value="4">PS 4 - 完全に臥床</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="question-card">
+                            <div class="question-label">血圧コントロール</div>
+                            <p class="question-detail">血圧が正常、又は適切に治療されコントロールされているか（SBP≤140 かつ DBP≤90 mmHg）</p>
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label>収縮期血圧 (mmHg)</label>
+                                    <input type="number" name="sbp" placeholder="例: 120" min="60" max="250" required>
+                                </div>
+                                <div class="input-group">
+                                    <label>拡張期血圧 (mmHg)</label>
+                                    <input type="number" name="dbp" placeholder="例: 80" min="30" max="150" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question-card">
+                            <div class="question-label">避妊への同意</div>
+                            <p class="question-detail">プロトコールに従った適切な避妊を行う意思があるか</p>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="contraception" value="yes" required><span class="radio-custom"></span>はい</label>
+                                <label class="radio-option"><input type="radio" name="contraception" value="no"><span class="radio-custom"></span>いいえ</label>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step 3: 臓器機能 -->
+                <section class="step" data-step="3">
+                    <div class="step-header">
+                        <span class="step-number">03</span>
+                        <div>
+                            <h2 class="step-title">臓器機能・検査値</h2>
+                            <p class="step-desc">血液検査・腎機能・肝機能・凝固系の基準値確認</p>
+                        </div>
+                    </div>
+                    <div class="questions-grid">
+                        <div class="question-card lab-card">
+                            <div class="lab-header">
+                                <span class="lab-icon">🩸</span>
+                                <span class="question-label">血液検査</span>
+                            </div>
+                            <div class="lab-grid">
+                                <div class="input-group">
+                                    <label>ANC (/μL) <span class="criteria-hint">≥1500</span></label>
+                                    <input type="number" name="anc" placeholder="例: 2000" min="0" step="1" required>
+                                </div>
+                                <div class="input-group">
+                                    <label>血小板 (/μL) <span class="criteria-hint">≥100,000</span></label>
+                                    <input type="number" name="platelets" placeholder="例: 150000" min="0" step="1000" required>
+                                </div>
+                                <div class="input-group">
+                                    <label>ヘモグロビン (g/dL) <span class="criteria-hint">≥9.0</span></label>
+                                    <input type="number" name="hemoglobin" placeholder="例: 12.0" min="0" step="0.1" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question-card lab-card">
+                            <div class="lab-header">
+                                <span class="lab-icon">🫘</span>
+                                <span class="question-label">腎機能</span>
+                            </div>
+                            <div class="lab-grid">
+                                <div class="input-group">
+                                    <label>eGFR (mL/min/1.73m²) <span class="criteria-hint">≥60</span></label>
+                                    <input type="number" name="egfr" placeholder="例: 90" min="0" step="1" required>
+                                </div>
+                                <div class="input-group">
+                                    <label>アルブミン (g/dL) <span class="criteria-hint">≥2.5</span></label>
+                                    <input type="number" name="albumin" placeholder="例: 3.5" min="0" step="0.1" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question-card lab-card">
+                            <div class="lab-header">
+                                <span class="lab-icon">🧪</span>
+                                <span class="question-label">肝機能</span>
+                            </div>
+                            <div class="lab-grid">
+                                <div class="input-group">
+                                    <label>ALT (×ULN) <span class="criteria-hint">≤2.5（肝転移時≤5）</span></label>
+                                    <input type="number" name="alt_uln" placeholder="例: 1.2" min="0" step="0.1" required>
+                                </div>
+                                <div class="input-group">
+                                    <label>総ビリルビン (×ULN) <span class="criteria-hint">≤1.5</span></label>
+                                    <input type="number" name="tbil_uln" placeholder="例: 0.8" min="0" step="0.1" required>
+                                </div>
+                            </div>
+                            <div class="checkbox-inline">
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="liver_mets">
+                                    <span class="checkbox-custom"></span>
+                                    肝転移/腫瘍浸潤あり（ALT基準が5×ULNに緩和）
+                                </label>
+                            </div>
+                            <div class="checkbox-inline">
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="gilbert">
+                                    <span class="checkbox-custom"></span>
+                                    ジルベール症候群あり（直接ビリルビン＜1.5×ULNなら許容）
+                                </label>
+                            </div>
+                        </div>
+                        <div class="question-card lab-card">
+                            <div class="lab-header">
+                                <span class="lab-icon">⏱️</span>
+                                <span class="question-label">凝固検査</span>
+                            </div>
+                            <div class="lab-grid">
+                                <div class="input-group">
+                                    <label>INR/PT/aPTT (×ULN) <span class="criteria-hint">≤1.5</span></label>
+                                    <input type="number" name="coag_uln" placeholder="例: 1.0" min="0" step="0.1" required>
+                                </div>
+                            </div>
+                            <div class="checkbox-inline">
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="anticoag">
+                                    <span class="checkbox-custom"></span>
+                                    抗凝固薬使用中（治療範囲内であれば許容）
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step 4: 除外基準（病歴） -->
+                <section class="step" data-step="4">
+                    <div class="step-header">
+                        <span class="step-number">04</span>
+                        <div>
+                            <h2 class="step-title">除外基準 — 病歴・合併症</h2>
+                            <p class="step-desc">以下の項目に該当する場合は原則として除外となります</p>
+                        </div>
+                    </div>
+                    <div class="exclusion-list">
+                        <div class="exclusion-item">
+                            <div class="exclusion-q">過去24ヵ月以内に進行した/積極的治療を必要とした重複がんを有するか<br><span class="note">※基底細胞がん・扁平上皮がん・切除済み上皮内がんは除く</span></div>
+                            <div class="radio-group inline">
+                                <label class="radio-option"><input type="radio" name="ex_cancer" value="yes" required><span class="radio-custom"></span>該当する</label>
+                                <label class="radio-option"><input type="radio" name="ex_cancer" value="no"><span class="radio-custom"></span>該当しない</label>
+                            </div>
+                        </div>
+                        <div class="exclusion-item">
+                            <div class="exclusion-q">組入れ前28日以内に大手術を受けたか</div>
+                            <div class="radio-group inline">
+                                <label class="radio-option"><input type="radio" name="ex_surgery" value="yes" required><span class="radio-custom"></span>該当する</label>
+                                <label class="radio-option"><input type="radio" name="ex_surgery" value="no"><span class="radio-custom"></span>該当しない</label>
+                            </div>
+                        </div>
+                        <div class="exclusion-item">
+                            <div class="exclusion-q">同種/自家骨髄移植又はその他の臓器移植の既往があるか</div>
+                            <div class="radio-group inline">
+                                <label class="radio-option"><input type="radio" name="ex_transplant" value="yes" required><span class="radio-custom"></span>該当する</label>
+                                <label class="radio-option"><input type="radio" name="ex_transplant" value="no"><span class="radio-custom"></span>該当しない</label>
+                            </div>
+                        </div>
+                        <div class="exclusion-item">
+                            <div class="exclusion-q">治験薬の構成要素・併用薬・添加物に対する過敏症があるか</div>
+                            <div class="radio-group inline">
+                                <label class="radio-option"><input type="radio" name="ex_allergy" value="yes" required><span class="radio-custom"></span>該当する</label>
+                                <label class="radio-option"><input type="radio" name="ex_allergy" value="no"><span class="radio-custom"></span>該当しない</label>
+                            </div>
+                        </div>
+                        <div class="exclusion-item">
+                            <div class="exclusion-q">心臓検査異常：過去1年以内の重大な心疾患、AMI、NYHA III/IV度のうっ血性心不全、コントロール不良の不整脈、QTcF＞450msec（脚ブロック時＞480msec）のいずれかに該当するか</div>
+                            <div class="radio-group inline">
+                                <label class="radio-option"><input type="radio" name="ex_cardiac" value="yes" required><span class="radio-custom"></span>該当する</label>
+                                <label class="radio-option"><input type="radio" name="ex_cardiac" value="no"><span class="radio-custom"></span>該当しない</label>
+                            </div>
+                        </div>
+                        <div class="exclusion-item">
+                            <div class="exclusion-q">未治療の脳/CNS転移、又は緊急介入を要する急速進行の脳/CNS転移があるか<br><span class="note">※治療済み・安定・コルチコステロイド終了2週間以上前であれば除外しない</span></div>
+                            <div class="radio-group inline">
+                                <label class="radio-option"><input type="radio" name="ex_cns" value="yes" required><span class="radio-custom"></span>該当する</label>
+                                <label class="radio-option"><input type="radio" name="ex_cns" value="no"><span class="radio-custom"></span>該当しない</label>
+                            </div>
+                        </div>
+                        <div class="exclusion-item">
+                            <div class="exclusion-q">間質性肺疾患（ILD）もしくは肺臓炎に現在罹患、又はILD/非感染性肺臓炎の既往があるか</div>
+                            <div class="radio-group inline">
+                                <label class="radio-option"><input type="radio" name="ex_ild" value="yes" required><span class="radio-custom"></span>該当する</label>
+                                <label class="radio-option"><input type="radio" name="ex_ild" value="no"><span class="radio-custom"></span>該当しない</label>
+                            </div>
+                        </div>
+                        <div class="exclusion-item">
+                            <div class="exclusion-q">過去2年以内に全身療法を必要とした自己免疫疾患の既往があるか<br><span class="note">※補充療法（甲状腺ホルモン、インスリン等）は除く</span></div>
+                            <div class="radio-group inline">
+                                <label class="radio-option"><input type="radio" name="ex_autoimmune" value="yes" required><span class="radio-custom"></span>該当する</label>
+                                <label class="radio-option"><input type="radio" name="ex_autoimmune" value="no"><span class="radio-custom"></span>該当しない</label>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step 5: 除外基準（追加） -->
+                <section class="step" data-step="5">
+                    <div class="step-header">
+                        <span class="step-number">05</span>
+                        <div>
+                            <h2 class="step-title">除外基準 — 追加項目</h2>
+                            <p class="step-desc">有害事象・感染症・その他の除外項目</p>
+                        </div>
+                    </div>
+                    <div class="exclusion-list">
+                        <div class="exclusion-item">
+                            <div class="exclusion-q">前治療による副作用がGrade 1又はベースラインまで回復していないか<br><span class="note">※脱毛症・難聴・白斑・補充療法管理可能な内分泌障害・ニューロパチーは除く</span></div>
+                            <div class="radio-group inline">
+                                <label class="radio-option"><input type="radio" name="ex_ae" value="yes" required><span class="radio-custom"></span>該当する</label>
+                                <label class="radio-option"><input type="radio" name="ex_ae" value="no"><span class="radio-custom"></span>該当しない</label>
+                            </div>
+                        </div>
+                        <div class="exclusion-item">
+                            <div class="exclusion-q">初回投与前1ヵ月以内に臨床的に重大な出血症状、出血傾向、又は出血性腫瘍があるか</div>
+                            <div class="radio-group inline">
+                                <label class="radio-option"><input type="radio" name="ex_bleeding" value="yes" required><span class="radio-custom"></span>該当する</label>
+                                <label class="radio-option"><input type="radio" name="ex_bleeding" value="no"><span class="radio-custom"></span>該当しない</label>
+                            </div>
+                        </div>
+                        <div class="exclusion-item">
+                            <div class="exclusion-q">重篤又はコントロール不良な高血圧（SBP≥160又はDBP≥100、高血圧性クリーゼ/脳症の既往等）があるか</div>
+                            <div class="radio-group inline">
+                                <label class="radio-option"><input type="radio" name="ex_htn" value="yes" required><span class="radio-custom"></span>該当する</label>
+                                <label class="radio-option"><input type="radio" name="ex_htn" value="no"><span class="radio-custom"></span>該当しない</label>
+                            </div>
+                        </div>
+                        <div class="exclusion-item">
+                            <div class="exclusion-q">HIV感染の既往が確認されているか</div>
+                            <div class="radio-group inline">
+                                <label class="radio-option"><input type="radio" name="ex_hiv" value="yes" required><span class="radio-custom"></span>該当する</label>
+                                <label class="radio-option"><input type="radio" name="ex_hiv" value="no"><span class="radio-custom"></span>該当しない</label>
+                            </div>
+                        </div>
+                        <div class="exclusion-item">
+                            <div class="exclusion-q">過去の免疫療法によるGrade3以上のimAE、重度の神経学的事象、剥脱性皮膚炎(SJS/TEN/DRESS)、又は心筋炎の既往があるか</div>
+                            <div class="radio-group inline">
+                                <label class="radio-option"><input type="radio" name="ex_imae" value="yes" required><span class="radio-custom"></span>該当する</label>
+                                <label class="radio-option"><input type="radio" name="ex_imae" value="no"><span class="radio-custom"></span>該当しない</label>
+                            </div>
+                        </div>
+                        <div class="exclusion-item">
+                            <div class="exclusion-q">HBsAg陽性、HCV抗体陽性（HCV RNA陰性を除く）に該当するか</div>
+                            <div class="radio-group inline">
+                                <label class="radio-option"><input type="radio" name="ex_hepatitis" value="yes" required><span class="radio-custom"></span>該当する</label>
+                                <label class="radio-option"><input type="radio" name="ex_hepatitis" value="no"><span class="radio-custom"></span>該当しない</label>
+                            </div>
+                        </div>
+                        <div class="exclusion-item">
+                            <div class="exclusion-q">うっ血性心不全の既往、又はLVEF＜50%であるか</div>
+                            <div class="radio-group inline">
+                                <label class="radio-option"><input type="radio" name="ex_chf" value="yes" required><span class="radio-custom"></span>該当する</label>
+                                <label class="radio-option"><input type="radio" name="ex_chf" value="no"><span class="radio-custom"></span>該当しない</label>
+                            </div>
+                        </div>
+                        <div class="exclusion-item">
+                            <div class="exclusion-q">活動性の腎疾患（透析、重大な感染等）、ネフローゼ症候群、又はGrade3の蛋白尿があるか</div>
+                            <div class="radio-group inline">
+                                <label class="radio-option"><input type="radio" name="ex_renal" value="yes" required><span class="radio-custom"></span>該当する</label>
+                                <label class="radio-option"><input type="radio" name="ex_renal" value="no"><span class="radio-custom"></span>該当しない</label>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step 6: 除外基準（治療・投薬） -->
+                <section class="step" data-step="6">
+                    <div class="step-header">
+                        <span class="step-number">06</span>
+                        <div>
+                            <h2 class="step-title">除外基準 — 治療歴・併用薬</h2>
+                            <p class="step-desc">直近の治療・投薬に関する除外項目</p>
+                        </div>
+                    </div>
+                    <div class="exclusion-list">
+                        <div class="exclusion-item">
+                            <div class="exclusion-q">消化管穿孔、気管食道瘻、Grade4の瘻孔の既往・合併、又は6ヵ月以内の消化管瘻/内臓瘻/腹部膿瘍があるか</div>
+                            <div class="radio-group inline">
+                                <label class="radio-option"><input type="radio" name="ex_gi" value="yes" required><span class="radio-custom"></span>該当する</label>
+                                <label class="radio-option"><input type="radio" name="ex_gi" value="no"><span class="radio-custom"></span>該当しない</label>
+                            </div>
+                        </div>
+                        <div class="exclusion-item">
+                            <div class="exclusion-q">腸病変（直腸S状部病変、CTでの腸病変）又は腸閉塞の臨床症状があるか</div>
+                            <div class="radio-group inline">
+                                <label class="radio-option"><input type="radio" name="ex_bowel" value="yes" required><span class="radio-custom"></span>該当する</label>
+                                <label class="radio-option"><input type="radio" name="ex_bowel" value="no"><span class="radio-custom"></span>該当しない</label>
+                            </div>
+                        </div>
+                        <div class="exclusion-item">
+                            <div class="exclusion-q">創傷治癒の合併症がある、又は創傷が完全に治癒していないか</div>
+                            <div class="radio-group inline">
+                                <label class="radio-option"><input type="radio" name="ex_wound" value="yes" required><span class="radio-custom"></span>該当する</label>
+                                <label class="radio-option"><input type="radio" name="ex_wound" value="no"><span class="radio-custom"></span>該当しない</label>
+                            </div>
+                        </div>
+                        <div class="exclusion-item">
+                            <div class="exclusion-q">肝硬変を有する、又は不安定な肝疾患/胆道疾患を合併しているか<br><span class="note">※安定した非肝硬変性慢性肝疾患（ジルベール症候群等）は許容</span></div>
+                            <div class="radio-group inline">
+                                <label class="radio-option"><input type="radio" name="ex_liver" value="yes" required><span class="radio-custom"></span>該当する</label>
+                                <label class="radio-option"><input type="radio" name="ex_liver" value="no"><span class="radio-custom"></span>該当しない</label>
+                            </div>
+                        </div>
+                        <div class="exclusion-item">
+                            <div class="exclusion-q">初回投与前30日以内に抗腫瘍薬（化学療法・分子標的・免疫療法・治験薬等）を投与されたか</div>
+                            <div class="radio-group inline">
+                                <label class="radio-option"><input type="radio" name="ex_chemo" value="yes" required><span class="radio-custom"></span>該当する</label>
+                                <label class="radio-option"><input type="radio" name="ex_chemo" value="no"><span class="radio-custom"></span>該当しない</label>
+                            </div>
+                        </div>
+                        <div class="exclusion-item">
+                            <div class="exclusion-q">初回投与前30日以内に生ワクチンの接種を受けたか<br><span class="note">※承認済みCOVID-19ワクチン(mRNA・アデノウイルス)は除外されない</span></div>
+                            <div class="radio-group inline">
+                                <label class="radio-option"><input type="radio" name="ex_vaccine" value="yes" required><span class="radio-custom"></span>該当する</label>
+                                <label class="radio-option"><input type="radio" name="ex_vaccine" value="no"><span class="radio-custom"></span>該当しない</label>
+                            </div>
+                        </div>
+                        <div class="exclusion-item">
+                            <div class="exclusion-q">スクリーニング前2週間以内に輸血又はコロニー刺激因子（G-CSF等）の投与を受けたか</div>
+                            <div class="radio-group inline">
+                                <label class="radio-option"><input type="radio" name="ex_transfusion" value="yes" required><span class="radio-custom"></span>該当する</label>
+                                <label class="radio-option"><input type="radio" name="ex_transfusion" value="no"><span class="radio-custom"></span>該当しない</label>
+                            </div>
+                        </div>
+                        <div class="exclusion-item">
+                            <div class="exclusion-q">CYP3A4/CYP2D6/P-gp/BCRPの強力な阻害剤/誘導剤を14日以内に使用、又はQT延長薬を使用中か</div>
+                            <div class="radio-group inline">
+                                <label class="radio-option"><input type="radio" name="ex_drugs" value="yes" required><span class="radio-custom"></span>該当する</label>
+                                <label class="radio-option"><input type="radio" name="ex_drugs" value="no"><span class="radio-custom"></span>該当しない</label>
+                            </div>
+                        </div>
+                        <div class="exclusion-item">
+                            <div class="exclusion-q">初回投与前2週間以内に局所放射線療法、又は4週間以内に広域放射線療法（骨髄30%超）を受けたか</div>
+                            <div class="radio-group inline">
+                                <label class="radio-option"><input type="radio" name="ex_radiation" value="yes" required><span class="radio-custom"></span>該当する</label>
+                                <label class="radio-option"><input type="radio" name="ex_radiation" value="no"><span class="radio-custom"></span>該当しない</label>
+                            </div>
+                        </div>
+                        <div class="exclusion-item">
+                            <div class="exclusion-q">現在、治験薬を使用する他の臨床試験に参加しているか</div>
+                            <div class="radio-group inline">
+                                <label class="radio-option"><input type="radio" name="ex_othertrial" value="yes" required><span class="radio-custom"></span>該当する</label>
+                                <label class="radio-option"><input type="radio" name="ex_othertrial" value="no"><span class="radio-custom"></span>該当しない</label>
+                            </div>
+                        </div>
+                        <div class="exclusion-item">
+                            <div class="exclusion-q">妊娠中又は授乳中であるか</div>
+                            <div class="radio-group inline">
+                                <label class="radio-option"><input type="radio" name="ex_pregnant" value="yes" required><span class="radio-custom"></span>該当する</label>
+                                <label class="radio-option"><input type="radio" name="ex_pregnant" value="no"><span class="radio-custom"></span>該当しない</label>
+                            </div>
+                        </div>
+                        <div class="exclusion-item">
+                            <div class="exclusion-q">治験実施計画書に規定されたSoAを遵守できないか</div>
+                            <div class="radio-group inline">
+                                <label class="radio-option"><input type="radio" name="ex_compliance" value="yes" required><span class="radio-custom"></span>該当する</label>
+                                <label class="radio-option"><input type="radio" name="ex_compliance" value="no"><span class="radio-custom"></span>該当しない</label>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </form>
+
+            <!-- Navigation -->
+            <div class="nav-bar">
+                <button type="button" class="btn btn-back" id="btnBack" disabled>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    戻る
+                </button>
+                <div class="step-indicator" id="stepIndicator">1 / 6</div>
+                <button type="button" class="btn btn-next" id="btnNext">
+                    次へ
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+            </div>
+        </main>
+
+        <!-- Results Modal -->
+        <div class="results-overlay" id="resultsOverlay">
+            <div class="results-panel">
+                <button class="results-close" id="resultsClose">&times;</button>
+                <div id="resultsContent"></div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>⚠ 本ツールは参考目的です。最終的な適格性判断は治験責任医師が行ってください。</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
