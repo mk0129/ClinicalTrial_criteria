@@ -1,3 +1,6 @@
+https://clinical-trial-criteria.vercel.app/
+
+
 # 治験適格性スクリーニング (Clinical Trial Eligibility Screening)
 
 治験の適格性をスクリーニングするためのWebベースの補助ツールです。
